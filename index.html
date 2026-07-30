@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KINA MOVIE - Watch Movies Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Umutwe wa Website (Header) -->
+    <header>
+        <h1 onclick="window.location.reload()" style="cursor: pointer;">KINA MOVIE</h1>
+        <div style="color: #aaa; font-size: 14px;">Search | Profile</div>
+    </header>
+
+    <!-- Umwanya w'Itangazo rya Google (Ads) -->
+    <div class="ad-banner">
+        <p style="margin: 0; color: #666; font-size: 12px;">SPONSORED ADVERTISEMENT</p>
+    </div>
+
+    <div class="main-container">
+        <h2>Filme Zigezweho</h2>
+        
+        <div class="video-grid">
+            
+            <!-- Filme ya 1 -->
+            <div class="video-card">
+                <img class="video-thumbnail-img" src="https://unsplash.com" alt="Filme 1">
+                <div class="video-info">
+                    <p class="video-title">Urukundo Rw'Ibanga (Episode 1)</p>
+                    <p class="video-author">Kina Movie Production • 10K views</p>
+                    <a href="https://youtube.com" target="_blank" class="watch-btn">Yirebe Ubu</a>
+                    
+                    <!-- Uburyo bwa Like -->
+                    <div class="interaction-section">
+                        <button class="like-btn" onclick="hitamoLike(this)">👍 Like (<span class="like-count">124</span>)</button>
+                    </div>
+
+                    <!-- Uburyo bwa Comment -->
+                    <div class="comment-section">
+                        <input type="text" class="comment-input" placeholder="Andika igitekerezo..." onkeypress="andikaComment(event, this)">
+                        <div class="comments-list">
+                            <p class="single-comment"><strong>Allain:</strong> Hari filme nziza cyane!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filme ya 2 -->
+            <div class="video-card">
+                <img class="video-thumbnail-img" src="https://unsplash.com" alt="Filme 2">
+                <div class="video-info">
+                    <p class="video-title">Inzira y'Urupfu (Full Movie)</p>
+                    <p class="video-author">Kina Movie Production • 5K views</p>
+                    <a href="https://youtube.com" target="_blank" class="watch-btn">Yirebe Ubu</a>
+                    
+                    <div class="interaction-section">
+                        <button class="like-btn" onclick="hitamoLike(this)">👍 Like (<span class="like-count">85</span>)</button>
+                    </div>
+
+                    <div class="comment-section">
+                        <input type="text" class="comment-input" placeholder="Andika igitekerezo..." onkeypress="andikaComment(event, this)">
+                        <div class="comments-list">
+                            <p class="single-comment"><strong>Eric:</strong> Ndashaka episode ya 2 vuba se.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Code za JavaScript zikora Like na Comment -->
+    <script>
+        function hitamoLike(button) {
+            let countSpan = button.querySelector('.like-count');
+            let sasa = parseInt(countSpan.innerText);
+            countSpan.innerText = sasa + 1;
+            button.style.backgroundColor = "#333";
+            button.disabled = true; // Umuntu akanda inshuro imwe gusa
+        }
+
+        function andikaComment(event, input) {
+            if (event.key === 'Enter' && input.value.trim() !== "") {
+                let list = input.parentElement.querySelector('.comments-list');
+                let newComment = document.createElement('p');
+                newComment.className = 'single-comment';
+                newComment.innerHTML = `<strong>Umusuye:</strong> ${input.value}`;
+                list.appendChild(newComment);
+                input.value = ""; // Siba mu kanyandiko
+            }
+        }
+    </script>
+
+</body>
+  </html>
+  
