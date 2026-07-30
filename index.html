@@ -4,17 +4,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KINA MOVIE - Watch Movies Online</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Amabara n'imiterere rusange */
+        body {
+            background-color: #0f0f0f;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #212121;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #3d3d3d;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #ff0000;
+            font-size: 24px;
+        }
+
+        .ad-banner {
+            background-color: #1e1e1e;
+            margin: 15px auto;
+            max-width: 90%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed #444;
+            border-radius: 4px;
+        }
+
+        .main-container {
+            padding: 10px 20px;
+        }
+
+        .video-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .video-card {
+            background-color: #1c1c1c;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            padding: 15px;
+        }
+
+        /* Ishusho y'icyitegererezo ya filme */
+        .video-thumbnail-placeholder {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135px, #ff0000, #212121);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .video-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+            color: #ffffff;
+        }
+
+        .video-author {
+            color: #aaa;
+            font-size: 13px;
+            margin: 0 0 15px 0;
+        }
+
+        /* Buto ya "Yirebe Ubu" */
+        .watch-btn {
+            display: block;
+            background-color: #ff0000;
+            color: #ffffff !important;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .watch-btn:hover {
+            background-color: #cc0000;
+        }
+
+        .comment-section {
+            margin-top: 15px;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+
+        .comment-input {
+            width: 93%;
+            background-color: #121212;
+            color: white;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .comments-list {
+            margin-top: 10px;
+        }
+
+        .single-comment {
+            font-size: 13px;
+            color: #ccc;
+            margin: 5px 0;
+            background: #222;
+            padding: 8px;
+            border-radius: 6px;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Umutwe wa Website (Header) -->
     <header>
-        <h1 onclick="window.location.reload()" style="cursor: pointer;">KINA MOVIE</h1>
+        <h1>KINA MOVIE</h1>
         <div style="color: #aaa; font-size: 14px;">Search | Profile</div>
     </header>
 
-    <!-- Umwanya w'Itangazo rya Google (Ads) -->
     <div class="ad-banner">
         <p style="margin: 0; color: #666; font-size: 12px;">SPONSORED ADVERTISEMENT</p>
     </div>
@@ -26,44 +154,34 @@
             
             <!-- Filme ya 1 -->
             <div class="video-card">
-                <img class="video-thumbnail-img" src="https://unsplash.com" alt="Filme 1">
-                <div class="video-info">
-                    <p class="video-title">Urukundo Rw'Ibanga (Episode 1)</p>
-                    <p class="video-author">Kina Movie Production • 10K views</p>
-                    <a href="https://youtube.com" target="_blank" class="watch-btn">Yirebe Ubu</a>
-                    
-                    <!-- Uburyo bwa Like -->
-                    <div class="interaction-section">
-                        <button class="like-btn" onclick="hitamoLike(this)">👍 Like (<span class="like-count">124</span>)</button>
-                    </div>
-
-                    <!-- Uburyo bwa Comment -->
-                    <div class="comment-section">
-                        <input type="text" class="comment-input" placeholder="Andika igitekerezo..." onkeypress="andikaComment(event, this)">
-                        <div class="comments-list">
-                            <p class="single-comment"><strong>Allain:</strong> Hari filme nziza cyane!</p>
-                        </div>
+                <div class="video-thumbnail-placeholder">🎬 KINA MOVIE TV</div>
+                <p class="video-title">Urukundo Rw'Ibanga (Episode 1)</p>
+                <!-- Hano hasigaye Views gusa -->
+                <p class="video-author">Kina Movie Production • <span class="view-count">10,420</span> views</p>
+                
+                <a href="https://youtube.com" target="_blank" class="watch-btn" onclick="ongeraView(this)">YIREBE UBU</a>
+                
+                <!-- Umwanya wa Comment gusa -->
+                <div class="comment-section">
+                    <input type="text" class="comment-input" placeholder="Andika igitekerezo..." onkeypress="andikaComment(event, this)">
+                    <div class="comments-list">
+                        <p class="single-comment"><strong>Allain:</strong> Hari filme nziza cyane!</p>
                     </div>
                 </div>
             </div>
 
             <!-- Filme ya 2 -->
             <div class="video-card">
-                <img class="video-thumbnail-img" src="https://unsplash.com" alt="Filme 2">
-                <div class="video-info">
-                    <p class="video-title">Inzira y'Urupfu (Full Movie)</p>
-                    <p class="video-author">Kina Movie Production • 5K views</p>
-                    <a href="https://youtube.com" target="_blank" class="watch-btn">Yirebe Ubu</a>
-                    
-                    <div class="interaction-section">
-                        <button class="like-btn" onclick="hitamoLike(this)">👍 Like (<span class="like-count">85</span>)</button>
-                    </div>
-
-                    <div class="comment-section">
-                        <input type="text" class="comment-input" placeholder="Andika igitekerezo..." onkeypress="andikaComment(event, this)">
-                        <div class="comments-list">
-                            <p class="single-comment"><strong>Eric:</strong> Ndashaka episode ya 2 vuba se.</p>
-                        </div>
+                <div class="video-thumbnail-placeholder">🎬 KINA MOVIE TV</div>
+                <p class="video-title">Inzira y'Urupfu (Full Movie)</p>
+                <p class="video-author">Kina Movie Production • <span class="view-count">5,112</span> views</p>
+                
+                <a href="https://youtube.com" target="_blank" class="watch-btn" onclick="ongeraView(this)">YIREBE UBU</a>
+                
+                <div class="comment-section">
+                    <input type="text" class="comment-input" placeholder="Andika igitekerezo..." onkeypress="andikaComment(event, this)">
+                    <div class="comments-list">
+                        <p class="single-comment"><strong>Eric:</strong> Ndashaka episode ya 2 vuba se.</p>
                     </div>
                 </div>
             </div>
@@ -71,14 +189,13 @@
         </div>
     </div>
 
-    <!-- Code za JavaScript zikora Like na Comment -->
     <script>
-        function hitamoLike(button) {
-            let countSpan = button.querySelector('.like-count');
-            let sasa = parseInt(countSpan.innerText);
-            countSpan.innerText = sasa + 1;
-            button.style.backgroundColor = "#333";
-            button.disabled = true; // Umuntu akanda inshuro imwe gusa
+        // Iyi function yongeza view iyo umuntu akanze kuri "Yirebe Ubu"
+        function ongeraView(element) {
+            let card = element.closest('.video-card');
+            let viewSpan = card.querySelector('.view-count');
+            let sasa = parseInt(viewSpan.innerText.replace(/,/g, ''));
+            viewSpan.innerText = (sasa + 1).toLocaleString();
         }
 
         function andikaComment(event, input) {
@@ -88,11 +205,11 @@
                 newComment.className = 'single-comment';
                 newComment.innerHTML = `<strong>Umusuye:</strong> ${input.value}`;
                 list.appendChild(newComment);
-                input.value = ""; // Siba mu kanyandiko
+                input.value = "";
             }
         }
     </script>
 
 </body>
-  </html>
-  
+                        </html>
+    
