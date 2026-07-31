@@ -13,19 +13,54 @@
             padding: 0;
         }
 
+        /* Umutwe wa Website zigezweho */
         header {
             background-color: #212121;
             padding: 15px 20px;
             display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-bottom: 1px solid #3d3d3d;
+        }
+
+        .header-top {
+            display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #3d3d3d;
         }
 
         header h1 {
             margin: 0;
             color: #ff0000;
             font-size: 24px;
+            cursor: pointer;
+        }
+
+        .profile-btn {
+            background-color: #333;
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .profile-btn:hover { background-color: #555; }
+
+        /* Agasanduku ka Search karemewe gukora */
+        .search-container {
+            width: 100%;
+        }
+
+        .search-input {
+            width: 90%;
+            padding: 8px 12px;
+            background-color: #121212;
+            border: 1px solid #444;
+            border-radius: 20px;
+            color: white;
+            font-size: 14px;
         }
 
         .ad-banner {
@@ -59,14 +94,25 @@
             padding: 15px;
         }
 
-        /* Agasanduku ka Video (Video Player) */
-        video {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
+        /* YouTube Player Ihishe ibirango byose */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
             border-radius: 8px;
             background-color: #000;
             margin-bottom: 12px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            pointer-events: auto;
         }
 
         .video-title {
@@ -115,8 +161,15 @@
 <body>
 
     <header>
-        <h1>KINA MOVIE</h1>
-        <div style="color: #aaa; font-size: 14px;">Search | Profile</div>
+        <div class="header-top">
+            <h1 onclick="window.location.reload()">KINA MOVIE</h1>
+            <!-- Buto ya Profile ikora -->
+            <button class="profile-btn" onclick="funguraProfile()">👤 Profile</button>
+        </div>
+        <!-- Agasanduku ka Search gakora -->
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchBox" placeholder="Shakisha filme hano..." oninput="shakishaFilme()">
+        </div>
     </header>
 
     <div class="ad-banner">
@@ -124,21 +177,18 @@
     </div>
 
     <div class="main-container">
-        <h2>Filme Zigezweho</h2>
+        <h2 id="sectionTitle">Filme Zigezweho</h2>
         
-        <div class="video-grid">
+        <div class="video-grid" id="videoGrid">
             
             <!-- Filme ya 1 -->
             <div class="video-card">
-                <!-- Agasanduku ka Video gakora kuri Website yawe directly -->
-                <video controls onplay="ongeraView(this)">
-                    <!-- https://youtube.com/playlist?list=RDxdx4n0wyQLc&playnext=1&si=RZKgKJjnaHWR9HNf .MP4 -->
-                    <source src="https://w3schools.com" type="video/mp4">
-                    Urubuga rwawe ntirushobora gukina iyi video.
-                </video>
-                
-                <p class="video-title">Indirimbo zo mugitabo (GUHIMBAZA 1)</p>
-                <p class="video-author">Kina Movie Production • <span class="view-count">10,420</span> views</p>
+                <div class="video-wrapper">
+                    <!-- Amategeko ya ?controls=1&modestbranding=1&rel=0 ahisha ko ari YouTube -->
+                    <iframe src="https://youtube.com" allowfullscreen></iframe>
+                </div>
+                <p class="video-title">Urukundo Rw'Ibanga (Episode 1)</p>
+                <p class="video-author">Kina Movie Production • 10,421 views</p>
                 
                 <div class="comment-section">
                     <input type="text" class="comment-input" placeholder="Andika igitekerezo..." onkeypress="andikaComment(event, this)">
@@ -150,20 +200,45 @@
 
             <!-- Filme ya 2 -->
             <div class="video-card">
-                <video controls onplay="ongeraView(this)">
-                    <!-- https://youtu.be/CY1q08lFu_A?si=PvnzVF2anhxvov9V.MP4 -->
-                    <source src="https://w3schools.com" type="video/mp4">
-                    Urubuga rwawe ntirushobora gukina iyi video.
-                </video>
-                
+                <div class="video-wrapper">
+                    <iframe src="https://youtube.com" allowfullscreen></iframe>
+                </div>
                 <p class="video-title">Inzira y'Urupfu (Full Movie)</p>
-                <p class="video-author">Kina Movie Production • <span class="view-count">5,112</span> views</p>
+                <p class="video-author">Kina Movie Production • 5,112 views</p>
                 
                 <div class="comment-section">
                     <input type="text" class="comment-input" placeholder="Andika igitekerezo..." onkeypress="andikaComment(event, this)">
                     <div class="comments-list">
                         <p class="single-comment"><strong>Eric:</strong> Ndashaka episode ya 2 vuba se.</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- Filme ya 3 (Nshya) -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://youtube.com" allowfullscreen></iframe>
+                </div>
+                <p class="video-title">Impanuka y'Ubuzima (Part 1)</p>
+                <p class="video-author">Kina Movie Production • 1,240 views</p>
+                
+                <div class="comment-section">
+                    <input type="text" class="comment-input" placeholder="Andika igitekerezo..." onkeypress="andikaComment(event, this)">
+                    <div class="comments-list"></div>
+                </div>
+            </div>
+
+            <!-- Filme ya 4 (Nshya) -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://youtube.com" allowfullscreen></iframe>
+                </div>
+                <p class="video-title">Isano y'Amaraso (Episode 3)</p>
+                <p class="video-author">Kina Movie Production • 8,900 views</p>
+                
+                <div class="comment-section">
+                    <input type="text" class="comment-input" placeholder="Andika igitekerezo..." onkeypress="andikaComment(event, this)">
+                    <div class="comments-list"></div>
                 </div>
             </div>
 
@@ -175,17 +250,27 @@
     </footer>
 
     <script>
-        // Iyi function yongeza view automatically iyo umuntu akanze "Play" kuri video
-        function ongeraView(videoElement) {
-            let card = videoElement.closest('.video-card');
-            let viewSpan = card.querySelector('.view-count');
-            if(!videoElement.hasAttribute('data-viewed')) {
-                let sasa = parseInt(viewSpan.innerText.replace(/,/g, ''));
-                viewSpan.innerText = (sasa + 1).toLocaleString();
-                videoElement.setAttribute('data-viewed', 'true'); // Kwizera ko abara inshuro imwe gusa
+        // Imikorere ya Search
+        function shakishaFilme() {
+            let input = document.getElementById('searchBox').value.toLowerCase();
+            let cards = document.getElementsByClassName('video-card');
+            
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].querySelector('.video-title').innerText.toLowerCase();
+                if (title.includes(input)) {
+                    cards[i].style.display = "block";
+                } else {
+                    cards[i].style.display = "none";
+                }
             }
         }
 
+        // Imikorere ya Profile
+        function funguraProfile() {
+            alert("Konti ya BYIRINGIRO ALLAIN GAETAN iracyubakwa...!");
+        }
+
+        // Imikorere ya Comment
         function andikaComment(event, input) {
             if (event.key === 'Enter' && input.value.trim() !== "") {
                 let list = input.parentElement.querySelector('.comments-list');
@@ -199,5 +284,5 @@
     </script>
 
 </body>
-                        </html>
-                        
+    </html>
+    
